@@ -130,23 +130,30 @@ function checkMatches(xpath) {
     return elements.snapshotLength;
 }
 
+function addEventListeners(xpath, textExtractor) {
+    const elements = document.evaluate(xpath, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+    for (let i = 0; i < elements.snapshotLength; i++) {
+        const element = elements.snapshotItem(i);
+        if (!element.dataset.hoverListenerAdded) {
+            element.dataset.hoverListenerAdded = 'true';
+            console.log(`Adding mouseover event listener to ${element}.`)
+            element.addEventListener("mouseover", () => {
+                const searchText = textExtractor(element);
+                console.log(`Mouse over: ${searchText}`);
+                embedVideos(element, searchText);
+            });
+        }
+    }
+}
+
 function observeDOM(xpath, textExtractor) {
+    // Add event listeners to existing elements
+    addEventListeners(xpath, textExtractor);
+
     const observer = new MutationObserver((mutations) => {
         mutations.forEach(() => {
             console.log("ObserverDOM detected a new mutation.")
-            const elements = document.evaluate(xpath, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-            for (let i = 0; i < elements.snapshotLength; i++) {
-                const element = elements.snapshotItem(i);
-                if (!element.dataset.hoverListenerAdded) {
-                    element.dataset.hoverListenerAdded = 'true';
-                    console.log(`Adding mouseover event listener to ${element}.`)
-                    element.addEventListener("mouseover", () => {
-                        const searchText = textExtractor(element);
-                        console.log(`Mouse over: ${searchText}`);
-                        embedVideos(element, searchText);
-                    });
-                }
-            }
+            addEventListeners(xpath, textExtractor);
         });
     });
 
