@@ -1,6 +1,6 @@
 ![configuring yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/yt_embedder1.gif)
 
-![running yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/yt_embedder1.gif)
+![running yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/yt_embedder2.gif)
 
 # What is youtube embedder?
 
