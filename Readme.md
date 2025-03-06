@@ -6,6 +6,14 @@
 ## Automatically search and embed YT videos in an overlay
 ![running yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/yt_embedder2.gif)
 
+## How to install
+You can load an unpacked extension into chrome or edge by:
+1) Clone this repo
+2) Enable developer mode in edge/chrome (Manage Extensions-> Developer Mode toggle)
+3) In Extensions section of your browser, click "load unpacked" and select `./src/`.
+
+I've also packed the extension into a .crx file (see `./extension/` ), which can be dropped onto your browser to install, but edge/chrome will disable any .crx files manually installed (as opposed to install from the chrome webstore or edge add-ins) unless you [whitelist them](https://techjourney.net/chrome-edge-disables-crx-installed-extensions-workarounds-to-turn-on/). If there is sufficient interest, I will release on chrome webstore / edge addin.
+
 ## What is YouTube Embedder?
 
 It's a chromium-compatible web extension that can create a youtube video as an overlay when you hover over a specific element on any webpage. You specify a URL site pattern, xpath expression and text extraction function for websites that you visit regularly to complement them with relevant youtube videos. 
