@@ -1,16 +1,20 @@
+
+# YouTube Embedder
+## Config for any site
 ![configuring yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/yt_embedder1.gif)
 
+## Automatically search and embed YT videos in an overlay
 ![running yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/yt_embedder2.gif)
 
-# What is youtube embedder?
+## What is YouTube Embedder?
 
 It's a chromium-compatible web extension that can create a youtube video as an overlay when you hover over a specific element on any webpage. You specify a URL site pattern, xpath expression and text extraction function for websites that you visit regularly to complement them with relevant youtube videos. 
 
-# Why is youtube embedder?
+## Why is YouTube Embedder?
 
 Suppose you regularly go to a site that provides ranking for different genres of movies and always find yourself searching for those movie trailers on youtube.  With this extension, you can hover over a movie link to get a quick youtube video of the movie trailer as an overlay without leaving that site or opening up a new tab.
 
-# How does it work?
+## How does it work?
 
 To make it work on any site, you have to specify three things:
 
