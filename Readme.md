@@ -2,10 +2,10 @@
 # YouTube Embedder
 ![configuring yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/images/yt_embedder.png)
 ## Config for any site
-![configuring yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/yt_embedder1.gif)
+![configuring yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/images/yt_embedder1.gif)
 
 ## Automatically search and embed YT videos in an overlay
-![running yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/yt_embedder2.gif)
+![running yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/images/yt_embedder2.gif)
 
 ## How to install
 You can load an unpacked extension into chrome or edge by:
