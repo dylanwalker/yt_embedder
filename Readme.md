@@ -1,5 +1,6 @@
 
 # YouTube Embedder
+![configuring yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/images/yt_embedder.png)
 ## Config for any site
 ![configuring yt_embedder](https://github.com/dylanwalker/yt_embedder/blob/main/yt_embedder1.gif)
 
