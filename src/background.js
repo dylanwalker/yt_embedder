@@ -29,3 +29,30 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("Unknown action:", request.action);
   }
 });
+
+function updateIcon() {
+  chrome.storage.sync.get("scriptEnabled", data => {
+    const isEnabled = data.scriptEnabled !== false; // Default to true if not set
+    const iconPath = isEnabled ? {
+      "16": "icons/yt_embedder_enabled16.png",
+      "48": "icons/yt_embedder_enabled48.png",
+      "128": "icons/yt_embedder_enabled128.png"
+    } : {
+      "16": "icons/yt_embedder_disabled16.png",
+      "48": "icons/yt_embedder_disabled48.png",
+      "128": "icons/yt_embedder_disabled128.png"
+    };
+    chrome.browserAction.setIcon({ path: iconPath });
+  });
+}
+
+// Update the icon when the extension is loaded
+chrome.runtime.onStartup.addListener(updateIcon);
+chrome.runtime.onInstalled.addListener(updateIcon);
+
+// Update the icon when the scriptEnabled state changes
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "sync" && changes.scriptEnabled) {
+    updateIcon();
+  }
+});
