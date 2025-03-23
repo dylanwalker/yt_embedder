@@ -41,7 +41,11 @@ chrome.storage.sync.get("scriptEnabled", data => {
 
     function pauseVideo(overlay) {
         console.log("Attempting to pause the video.")
-        document.getElementById(overlay.videoUrl).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
+        const this_overlay = document.getElementById(overlay.videoUrl);
+        // If the user clicks away before the video has loaded, the overlay could be null; if not, try to pause it.
+        if (this_overlay) { 
+            this_overlay.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
+        }
     }
 
     function displayOverlay(element, overlay) {
