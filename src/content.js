@@ -30,12 +30,14 @@ chrome.storage.sync.get("scriptEnabled", data => {
     }
 
     function updateOverlay(overlay, videoUrl) {
-        if (videoUrl) {
-            console.log(`Updating overlay to videoUrl = ${videoUrl}`)
-            overlay.innerHTML = `<iframe width="560" height="315" id="${videoUrl}" src="${videoUrl}?enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-            overlay.videoUrl = videoUrl;
-        } else {
-            overlay.innerHTML = "No video found.";
+        if (overlay) {
+            if (videoUrl) {
+                console.log(`Updating overlay to videoUrl = ${videoUrl}`)
+                overlay.innerHTML = `<iframe width="560" height="315" id="${videoUrl}" src="${videoUrl}?enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+                overlay.videoUrl = videoUrl;
+            } else {
+                overlay.innerHTML = "No video found.";
+            }
         }
     }
 
@@ -50,8 +52,8 @@ chrome.storage.sync.get("scriptEnabled", data => {
 
     function displayOverlay(element, overlay) {
         // If the overlay is already being displayed for the current element, do nothing.
-        if (currentOverlay === overlay && currentElement === element) {
-            console.log("Overlay already displayed for this element. Skipping reload.");
+        if (currentOverlay === overlay && currentElement === element && overlay.innerHTML !== "Loading...") {
+            console.log("Overlay already loaded for this element. Skipping reload.");
             return;
         }
 
@@ -174,8 +176,12 @@ chrome.storage.sync.get("scriptEnabled", data => {
             if (regex.test(window.location.href)) {
                 console.log(`Loaded page matches an existing configuration.`)
                 const xpath = config.xpath;
-                const textExtractor = new Function("element", config.textExtractor);
-                observeDOM(xpath, textExtractor);
+                try {
+                    const textExtractor = new Function("element", config.textExtractor);
+                    observeDOM(xpath, textExtractor);
+                } catch (error) {
+                    console.error("Invalid textExtractor function:", error);
+                }
                 break;
             }
         }
